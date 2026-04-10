@@ -1,11 +1,11 @@
-import { useState } from "react";
+
 
 export default function ProjectList({ projects, search, setSearch }) {
 
-  // ✅ ensure array
+
   const safeProjects = Array.isArray(projects) ? projects : [];
 
-  // ✅ filter logic (FIXED 🔥)
+ 
   const filtered = safeProjects.filter((p) => {
     const text = search.toLowerCase().trim();
 
@@ -18,7 +18,7 @@ export default function ProjectList({ projects, search, setSearch }) {
   return (
     <div className="w-full">
 
-      {/* 🔍 SEARCH */}
+     
       <div className="relative w-full mb-6">
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
           🔍
@@ -38,14 +38,14 @@ export default function ProjectList({ projects, search, setSearch }) {
         />
       </div>
 
-      {/* ❌ EMPTY */}
+    
       {filtered.length === 0 && (
         <p className="text-white/70 text-center mt-10">
           No projects found 😢
         </p>
       )}
 
-      {/* 📦 PROJECT LIST */}
+   
       <div className="grid md:grid-cols-2 gap-4">
         {filtered.map((p, i) => (
           <div
