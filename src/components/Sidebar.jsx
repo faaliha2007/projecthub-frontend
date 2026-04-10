@@ -2,12 +2,12 @@ export default function Sidebar({ setPage, page }) {
   return (
     <div className="w-64 h-screen p-5 bg-white/10 backdrop-blur-xl border-r border-white/20 flex flex-col">
 
-      {/* 🔥 APP NAME */}
+  
       <h1 className="text-2xl font-bold text-white mb-8 text-center tracking-wide">
         🚀 PeerHub
       </h1>
 
-      {/* 📂 MENU */}
+    
       <div className="flex flex-col gap-3">
 
         <button
@@ -44,7 +44,7 @@ export default function Sidebar({ setPage, page }) {
 
       </div>
 
-      {/* ❤️ FOOTER */}
+      
       <div className="mt-auto pt-6 text-sm text-white/70 text-center">
         Built with ❤️ by Faali
       </div>
