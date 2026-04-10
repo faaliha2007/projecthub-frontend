@@ -2,14 +2,14 @@ import { useEffect } from "react";
 
 function Profile({ profile, setProfile, editing, setEditing }) {
 
-  // 🔄 LOAD FROM LOCAL STORAGE
+ 
   useEffect(() => {
     const saved = localStorage.getItem("profile");
 
     if (saved) {
       setProfile(JSON.parse(saved));
     }
-  }, []);
+  }, [setProfile]);
 
   // 🖼️ IMAGE UPLOAD (LOCAL PREVIEW)
   const handleImage = (e) => {
@@ -21,7 +21,7 @@ function Profile({ profile, setProfile, editing, setEditing }) {
     setProfile((prev) => ({ ...prev, pic: imageURL }));
   };
 
-  // 💾 SAVE PROFILE
+
   const handleSave = () => {
     localStorage.setItem("profile", JSON.stringify(profile));
     setEditing(false);
@@ -30,32 +30,31 @@ function Profile({ profile, setProfile, editing, setEditing }) {
   return (
     <div className="bg-white/10 backdrop-blur-xl p-6 rounded-2xl text-center shadow-lg border border-white/20 w-80 mx-auto mt-10">
 
-      {/* 🖼️ PROFILE IMAGE */}
+     
       <img
         src={profile?.pic || "https://via.placeholder.com/100"}
         alt="profile"
         className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-pink-400 object-cover"
       />
 
-      {/* 📂 FILE INPUT */}
       {editing && (
-     <input
-  type="file"
-  accept="image/*"
-  onChange={handleImage}
-  className="mb-3 w-full text-sm text-white 
-  file:mr-4 file:py-2 file:px-4 
-  file:rounded-full file:border-0 
-  file:text-sm file:font-semibold 
-  file:bg-pink-400 file:text-white 
-  hover:file:bg-pink-500 
-  cursor-pointer"
-/>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImage}
+          className="mb-3 w-full text-sm text-white 
+          file:mr-4 file:py-2 file:px-4 
+          file:rounded-full file:border-0 
+          file:text-sm file:font-semibold 
+          file:bg-pink-400 file:text-white 
+          hover:file:bg-pink-500 
+          cursor-pointer"
+        />
       )}
 
       {editing ? (
         <>
-          {/* ✏️ NAME */}
+         
           <input
             value={profile?.name || ""}
             onChange={(e) =>
@@ -65,7 +64,7 @@ function Profile({ profile, setProfile, editing, setEditing }) {
             placeholder="Name"
           />
 
-          {/* ✏️ BIO */}
+        
           <input
             value={profile?.bio || ""}
             onChange={(e) =>
@@ -75,7 +74,7 @@ function Profile({ profile, setProfile, editing, setEditing }) {
             placeholder="Bio"
           />
 
-          {/* 💾 SAVE */}
+        
           <button
             onClick={handleSave}
             className="bg-pink-400 w-full py-2 rounded text-white font-semibold hover:bg-pink-500 transition"
@@ -93,7 +92,7 @@ function Profile({ profile, setProfile, editing, setEditing }) {
             {profile?.bio || "Your Bio"}
           </p>
 
-          {/* ✏️ EDIT */}
+      
           <button
             onClick={() => setEditing(true)}
             className="mt-3 w-full bg-pink-400 py-2 rounded text-white font-semibold hover:bg-pink-500 transition"
