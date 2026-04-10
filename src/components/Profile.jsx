@@ -11,7 +11,7 @@ function Profile({ profile, setProfile, editing, setEditing }) {
     }
   }, [setProfile]);
 
-  // 🖼️ IMAGE UPLOAD (LOCAL PREVIEW)
+
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
