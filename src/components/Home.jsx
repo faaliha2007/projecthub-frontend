@@ -9,6 +9,26 @@ export default function Home() {
     setProjects(savedProjects);
   }, []);
 
+ 
+  const handleLike = (index) => {
+    const updated = [...projects];
+
+    updated[index].liked = !updated[index].liked;
+
+    setProjects(updated);
+    localStorage.setItem("projects", JSON.stringify(updated));
+  };
+
+
+  const handleSave = (index) => {
+    const updated = [...projects];
+
+    updated[index].saved = !updated[index].saved;
+
+    setProjects(updated);
+    localStorage.setItem("projects", JSON.stringify(updated));
+  };
+
   const totalProjects = projects.length;
   const trendingProjects = projects.slice(0, 3);
 
@@ -36,7 +56,9 @@ export default function Home() {
         </div>
 
         <div className="bg-white/10 backdrop-blur p-4 rounded-xl text-center border border-white/20">
-          <h2 className="text-xl font-bold">⭐</h2>
+          <h2 className="text-xl font-bold">
+            {projects.filter(p => p.saved).length}
+          </h2>
           <p className="text-sm opacity-70">Saved</p>
         </div>
       </div>
@@ -87,13 +109,27 @@ export default function Home() {
               </p>
 
               <div className="flex gap-4 mt-3 text-sm">
-                <button className="hover:text-pink-400 transition">
-                  ❤️ Like
+                
+              
+                <button
+                  onClick={() => handleLike(index)}
+                  className={`transition ${
+                    project.liked ? "text-pink-400" : "hover:text-pink-400"
+                  }`}
+                >
+                  {project.liked ? "💖 Liked" : "❤️ Like"}
                 </button>
 
-                <button className="hover:text-yellow-400 transition">
-                  ⭐ Save
+                
+                <button
+                  onClick={() => handleSave(index)}
+                  className={`transition ${
+                    project.saved ? "text-yellow-400" : "hover:text-yellow-400"
+                  }`}
+                >
+                  {project.saved ? "⭐ Saved" : "⭐ Save"}
                 </button>
+
               </div>
             </div>
           ))}
